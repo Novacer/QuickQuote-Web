@@ -21,6 +21,9 @@ mongoose.connection.on('error', function(err) {
 // using express
 var app = express();
 
+// API route
+var users = require('./routes/users');
+
 var port = 3000;
 
 // using CORS middleware to protect api url
@@ -32,12 +35,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 // body parser middleware
 app.use(bodyParser.json());
 
-/* Passport middleware
+// Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
+// config passport
 require('./config/passport')(passport);
-*/
+
+// set API route
+app.use('/users', users);
 
 app.get('/', function(request, response) {
   response.send("Hello World");

@@ -11,7 +11,7 @@ var userSchema = mongoose.Schema({
   quotes: {type: Array, default: []}
 });
 
-var user = module.exports = mongoose.model('User', userSchema);
+var User = module.exports = mongoose.model('User', userSchema);
 
 module.exports.getUserById = function (id, callback) {
   User.findById(id, callback);

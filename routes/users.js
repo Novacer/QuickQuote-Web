@@ -3,7 +3,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
-var passport = require(passport);
+var passport = require('passport');
 var jwt = require('jsonwebtoken');
 
 // Register
@@ -61,7 +61,7 @@ router.post('/authenticate', function(req, res, next) {
 router.post('/quote', passport.authenticate('jwt', {session: false}), function(req, res, next) {
   var newQuotes = req.body.quotes;
   var username = req.body.username;
-  User.addQuote(username, quotes, function (err, doc) {
+  User.addQuote(username, newQuotes, function (err, doc) {
     if (err) {
       return res.json({success: false, msg: "Failed to add quotes!"});
     }
