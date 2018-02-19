@@ -1,0 +1,22 @@
+{
+  "name": "quickquote",
+  "version": "1.0.0",
+  "description": "Fast insurance quotes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "dependencies": {
+    "express": "*",
+    "mongoose": "*",
+    "bcryptjs": "*",
+    "cors": "*",
+    "jsonwebtoken": "*",
+    "body-parser": "*",
+    "passport": "*",
+    "passport-jwt": "*"
+  },
+  "author": "Jack Zhang",
+  "license": "ISC"
+}
