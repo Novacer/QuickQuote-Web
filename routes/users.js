@@ -6,7 +6,7 @@ var User = require('../models/user');
 var passport = require('passport');
 var jwt = require('jsonwebtoken');
 
-// Register
+// Register Users
 router.post('/register', function(req, res, next) {
   let newUser = new User({
     name: req.body.name,
@@ -57,13 +57,13 @@ router.post('/authenticate', function(req, res, next) {
 });
 
 
-// Update Quotes
+// Update Quotes (protected route, requires authorization in header)
 router.post('/quote', passport.authenticate('jwt', {session: false}), function(req, res, next) {
   var newQuotes = req.body.quotes;
   var username = req.body.username;
-  User.addQuote(username, newQuotes, function (err, doc) {
+  User.editQuote(username, newQuotes, function (err, doc) {
     if (err) {
-      return res.json({success: false, msg: "Failed to add quotes!"});
+      return res.json({success: false, msg: "Failed to edit quotes!"});
     }
     else {
       console.log(doc);
@@ -73,7 +73,7 @@ router.post('/quote', passport.authenticate('jwt', {session: false}), function(r
 });
 
 
-// Get User Profile
+// Get User Profile (protected route, requires authorization in header)
 router.get('/profile', passport.authenticate('jwt', {session: false}), function (req, res, next) {
   res.json({user: req.user});
 });
