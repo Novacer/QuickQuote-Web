@@ -45,10 +45,12 @@ require('./config/passport')(passport);
 // set API route
 app.use('/users', users);
 
+// base url
 app.get('/', function(request, response) {
   response.send("Hello World");
 });
 
+// check server start
 app.listen(port, function() {
   console.log("server started on port " + port);
 });
