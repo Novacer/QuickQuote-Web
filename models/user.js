@@ -40,3 +40,11 @@ module.exports.addQuote = function (username, newQuotes, callback) {
   var query = {username: username};
   User.findOneAndUpdate(query, {quotes : newQuotes}, {new : true}, callback);
 }
+
+
+module.exports.comparePassword = function (candidatePassword, hash, callback) {
+  bcrypt.compare(candidatePassword, hash, function (err, isMatch) {
+    if (err) throw err;
+    callback(null, isMatch);
+  });
+}
