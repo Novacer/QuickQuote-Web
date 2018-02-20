@@ -1,3 +1,23 @@
 .my-space{
   margin-left: 25px;
 }
+
+.jumbotron {
+  background-image: url('http://www.finity.com.au/site/wp-content/uploads/2016/01/Finity-Background-17.jpg') !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.color-gray{
+  color: #585858;
+}
+
+.btn{
+  color: white;
+  background-color: #ffc815;
+}
+
+.color-yellow{
+  color: #ffc815;
+}

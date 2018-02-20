@@ -2,6 +2,15 @@ nav {
   display:block;
 }
 
+.my-color{
+  background-color: #292929;
+}
+.my-yellow{
+  background-color: #ffc815;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .nav {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -46,6 +55,9 @@ nav {
   font-size: 1.25rem;
   line-height: inherit;
   white-space: nowrap;
+  background-color: #ffc815;
+  padding-left : 10px;
+  padding-right: 10px;
 }
 
 .nav-tabs .nav-link.active,
