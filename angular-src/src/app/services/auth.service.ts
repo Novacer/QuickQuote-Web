@@ -33,10 +33,29 @@ export class AuthService {
     this.user = user;
   }
 
+  loadToken() {
+    var token = localStorage.getItem('id_token');
+    this.authToken = token;
+  }
+
+  getProfile() {
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', this.authToken);
+
+    return this.http.get('http://localhost:3000/users/profile', {headers: headers})
+      .map(resp => resp.json());
+  }
+
   logout() {
     this.authToken = null;
     this.user = null;
     localStorage.clear();
+  }
+
+  loggedIn() {
+    return tokenNotExpired('id_token');
   }
 
 }
