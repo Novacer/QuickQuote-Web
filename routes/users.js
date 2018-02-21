@@ -56,6 +56,20 @@ router.post('/authenticate', function(req, res, next) {
   });
 });
 
+router.post('/check', function(req, res, next) {
+  var username = req.body.username;
+
+  User.getUserByName(username, function(err, user) {
+    if (err) throw err;
+
+    if (!user) {
+      return res.json({success: true, msg: "Username available!"});
+    }
+    else {
+      return res.json({success: false, msg: "Username already exists!"});
+    }
+  });
+});
 
 // Update Quotes (protected route, requires authorization in header)
 router.post('/quote', passport.authenticate('jwt', {session: false}), function(req, res, next) {
