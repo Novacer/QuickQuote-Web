@@ -8,6 +8,7 @@
 </div>
 
 <!-- Page content -->
-<div class="main container-fluid">
-  <p>profile works!</p>
+<div class="main container-fluid" *ngIf="user">
+  <p>{{user.name}}</p>
+  <p>{{user.email}}</p>
 </div>
