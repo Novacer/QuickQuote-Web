@@ -16,12 +16,23 @@ router.post('/register', function(req, res, next) {
     quotes: []
   });
 
-  User.addUser(newUser, function(err, user) {
-    if (err) {
-      res.json({success: false, msg: "Failed to Register"});
+  var username = req.body.username;
+
+  User.getUserByName(username, function(err, user) {
+    if (err) throw err;
+
+    if (!user) {
+      User.addUser(newUser, function(err, user) {
+        if (err) {
+          res.json({success: false, msg: "Failed to Register"});
+        }
+        else {
+          res.json({success: true, msg: "Registration complete"});
+        }
+      });
     }
     else {
-      res.json({success: true, msg: "Registration complete"});
+      res.json({success: false, msg: "Nice try stranger, but the user already exists. Use /check route to check if the username is available next time!"})
     }
   });
 });
