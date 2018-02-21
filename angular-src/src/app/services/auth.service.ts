@@ -6,6 +6,17 @@ import { tokenNotExpired } from 'angular2-jwt';
 @Injectable()
 export class AuthService {
 
-  constructor() { }
+  authToken: any;
+  user: any;
+
+  constructor(private http: Http) { }
+
+  registerUser(user) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post('http://localhost:3000/users/register', user, {headers: headers})
+      .map(resp => resp.json());
+  }
 
 }
