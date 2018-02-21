@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.authService.authenticateUser(user).subscribe(data =>{
       if (data.success) {
         this.loginFail = false;
-        console.log(data);
+        this.authService.storeUserData(data.token, data.user);
         this.router.navigateByUrl('profile');
       }
 
