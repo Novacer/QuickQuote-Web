@@ -1,3 +1,20 @@
-<p>
-  login works!
-</p>
+<body class="text-center">
+    <form class="form-signin" (submit)="onLoginSubmit()">
+      <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+
+      <div class="alert alert-danger" *ngIf="loginFail">
+        <strong>Login Failed!</strong>
+      </div>
+
+      <h1 class="h3 mb-3 font-weight-normal">Please login</h1>
+
+      <label for="inputName" class="sr-only">Username</label>
+      <input type="text" class="form-control" name="username" [(ngModel)]="username" id="inputName" placeholder="Username" required>
+
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" name="password" [(ngModel)]="password" placeholder="Password" required>
+
+      <button class="btn btn-lg my-btn btn-block" type="submit">Login</button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2018</p>
+    </form>
+  </body>

@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
       this.authService.registerUser(user).subscribe(data => {
         if (data.success) {
           this.regFailed = false;
-          this.router.navigateByUrl('/login');
+          this.router.navigateByUrl('login');
         }
         else {
           this.regFailed = true;
