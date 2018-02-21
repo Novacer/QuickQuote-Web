@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { QuoteComponent } from './components/quote/quote.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
+import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
 
 const appRoutes : Routes = [
@@ -38,7 +39,7 @@ const appRoutes : Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthService],
+  providers: [AuthService, ValidateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
