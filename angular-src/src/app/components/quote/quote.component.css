@@ -1,0 +1,29 @@
+.container{
+  position: relative;
+}
+
+.child{
+  position: absolute;
+  top: 50%;
+}
+
+.black-bg{
+  background-color: #585858;
+}
+
+.gray-bg {
+  background-color: #ffffff;
+}
+
+.top {
+  padding-top: 10px;
+}
+
+.bottom {
+  padding-bottom: 20px;
+}
+
+.my-btn{
+  padding-top: 15px;
+  background-color: #ffc815;
+}
