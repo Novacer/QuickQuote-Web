@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { ValidateService } from '../../services/validate.service';
 
 @Component({
   selector: 'app-quote',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 export class QuoteComponent implements OnInit {
 
   same_mailing: boolean;
+  validForm: boolean;
 
   client: Client;
   client_name: string;
@@ -37,8 +39,9 @@ export class QuoteComponent implements OnInit {
   house_updated: boolean;
   house_alarm_type: string;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private validateService: ValidateService) {
     this.same_mailing = true;
+    this.validForm = true;
     this.client_province = "BC";
     this.house_province = "BC";
     this.house_build = "Standard";
@@ -89,8 +92,13 @@ export class QuoteComponent implements OnInit {
       alarm_type: this.house_alarm_type
     }
 
-    console.log(this.client);
-    console.log(this.house);
+    if (this.validateService.validateQuote(this.client, this.house)) {
+      console.log('success!')
+      this.validForm = true;
+    }
+    else {
+      this.validForm = false;
+    }
   }
 
   changeUpdate(status: string) {
