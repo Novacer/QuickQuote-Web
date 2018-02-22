@@ -250,6 +250,18 @@ export class QuoteService {
     localStorage.setItem('quote', JSON.stringify(this.quote));
     next();
   }
+
+  getSavedQuote() {
+    const savedString = localStorage.getItem('quote');
+
+    if (savedString == null) {
+      return false;
+    }
+
+    else {
+      return JSON.parse(savedString);
+    }
+  }
 }
 
 interface Quote {
