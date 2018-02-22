@@ -44,6 +44,10 @@ export class ValidateService {
       return false;
     }
 
+    //misc checks
+    if (client.dob > 2018 || house.year_built > 2018) {
+    return false;
+  }
     else {
       return true;
     }
