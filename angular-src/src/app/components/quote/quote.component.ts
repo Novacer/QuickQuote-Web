@@ -16,7 +16,7 @@ export class QuoteComponent implements OnInit {
   client: Client;
   client_name: string;
   client_account_num: string;
-  client_dob: string;
+  client_dob: number;
   client_claims_free: number;
   client_comments: string;
 
@@ -114,7 +114,7 @@ export class QuoteComponent implements OnInit {
 interface Client {
   name: string;
   account_num: string;
-  dob: string;
+  dob: number;
   claims_free: number;
   mailing: Address;
   comments: string;

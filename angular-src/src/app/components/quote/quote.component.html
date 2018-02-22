@@ -17,8 +17,8 @@
                            <input type="text" class="form-control" id="exampleAccount" placeholder="XXXXXX" name="client_account_num" [(ngModel)]="client_account_num">
                        </div>
                        <div class="col-sm-3 pb-3">
-                           <label for="exampleCtrl">Date of Birth</label>
-                           <input type="text" class="form-control" id="exampleCtrl" placeholder="YYYY/MM/DD" name="client_dob" [(ngModel)]="client_dob">
+                           <label for="exampleCtrl">Year of Birth</label>
+                           <input type="number" min="1900" max="2018" class="form-control" id="exampleCtrl" placeholder="YYYY" name="client_dob" [(ngModel)]="client_dob">
                        </div>
                        <div class="col-sm-2 pb-3">
                            <label for="exampleCtrl">Years Claims Free</label>
@@ -116,9 +116,7 @@
                            <label for="floors">Number of Floors (exclude basement)</label>
                            <select class="form-control" id="floors" #select_floors (change)="house_num_floors = select_floors.value">
                                <option>1</option>
-                               <option>1.5</option>
                                <option>2</option>
-                               <option>2.5</option>
                                <option>3+</option>
                            </select>
                        </div>
