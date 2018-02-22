@@ -121,10 +121,11 @@ export class QuoteComponent implements OnInit {
       else {
         this.house.price = this.quoteService.approxRCT1Storey(this.house.sqft, this.house.build_quality);
       }
-
-      console.log(this.house);
-
       this.validForm = true;
+
+      this.quoteService.createAndSaveQuote(this.client, this.house, () => {
+        this.router.navigateByUrl('profile');
+      });
     }
     else {
       this.validForm = false;
