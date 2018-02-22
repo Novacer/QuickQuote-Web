@@ -242,6 +242,23 @@ export class QuoteService {
 
     let companies_list = [this.gore, this.intact, this.wawanesa, this.family];
 
+
+    // define comparison function
+    let comparison = function (a,b) {
+      if (a.score < b.score) {
+        return 1;
+      }
+      else if (a.score > b.score) {
+        return -1;
+      }
+      else {
+        return 0;
+      }
+    }
+
+    // sort the array by score (descending)
+    companies_list.sort(comparison);
+
     this.quote = {
       client_name: client.name,
       companies: companies_list
