@@ -16,6 +16,7 @@ import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
 import { QuoteService } from './services/quote.service';
 import { AuthGuard } from './guards/auth.guard';
+import { ViewQuoteComponent } from './components/view-quote/view-quote.component';
 
 const appRoutes : Routes = [
   {path: '', component: HomeComponent},
@@ -33,7 +34,8 @@ const appRoutes : Routes = [
     RegisterComponent,
     HomeComponent,
     QuoteComponent,
-    ProfileComponent
+    ProfileComponent,
+    ViewQuoteComponent
   ],
   imports: [
     BrowserModule,
