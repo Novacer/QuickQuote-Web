@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Http, Headers } from '@angular/http';
 import { AuthService } from './auth.service';
 
 @Injectable()
@@ -13,7 +14,7 @@ export class QuoteService {
   wawanesa: Company;
   family: Company;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private http: Http) { }
 
   approxRCTWithBasement(sqft: number, custom: string) {
     if (custom == "Standard") {
@@ -278,6 +279,25 @@ export class QuoteService {
     else {
       return JSON.parse(savedString);
     }
+  }
+
+  // requires that quote exists in localStorage!
+  pushSavedQuote() {
+    this.loadQuote();
+
+    this.authService.modifyQuotes(this.quote).subscribe(data => {
+      if (data.success) {
+        this.authService.updateUserData(data.user);
+      }
+
+      else {
+        return false;
+      }
+    });
+  }
+
+  loadQuote() {
+    this.quote = JSON.parse(localStorage.getItem('quote'));
   }
 }
 
