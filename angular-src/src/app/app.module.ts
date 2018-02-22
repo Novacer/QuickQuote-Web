@@ -23,6 +23,7 @@ const appRoutes : Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'quote', component: QuoteComponent, canActivate: [AuthGuard]},
+  {path: 'view-quote', component: ViewQuoteComponent, canActivate: [AuthGuard]},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]}
 ];
 
