@@ -124,7 +124,7 @@ export class QuoteComponent implements OnInit {
       this.validForm = true;
 
       this.quoteService.createAndSaveQuote(this.client, this.house, () => {
-        this.router.navigateByUrl('profile');
+        this.router.navigateByUrl('view-quote');
       });
     }
     else {
