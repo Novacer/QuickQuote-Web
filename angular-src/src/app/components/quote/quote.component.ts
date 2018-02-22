@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ValidateService } from '../../services/validate.service';
+import { QuoteService } from '../../services/quote.service';
 
 @Component({
   selector: 'app-quote',
@@ -39,7 +40,10 @@ export class QuoteComponent implements OnInit {
   house_updated: boolean;
   house_alarm_type: string;
 
-  constructor(private authService: AuthService, private router: Router, private validateService: ValidateService) {
+  constructor(private authService: AuthService,
+    private router: Router,
+    private validateService: ValidateService,
+    private quoteService: QuoteService) {
     this.same_mailing = true;
     this.validForm = true;
     this.client_province = "BC";
@@ -49,6 +53,7 @@ export class QuoteComponent implements OnInit {
     this.house_updated = true;
     this.house_alarm_type = "None";
     this.client_comments = "";
+
   }
 
   ngOnInit() {
@@ -89,11 +94,36 @@ export class QuoteComponent implements OnInit {
       basement_sqft: this.house_basement_sqft,
       num_floors: this.house_num_floors,
       updated: this.house_updated,
-      alarm_type: this.house_alarm_type
+      alarm_type: this.house_alarm_type,
+      price: -1
     }
 
     if (this.validateService.validateQuote(this.client, this.house)) {
-      console.log('success!')
+      console.log('success!');
+
+      if (2018 - this.house.year_built <= 25) {
+        this.house.updated = true;
+      }
+
+      // approximate building limits
+      const numFloors = this.house.num_floors;
+      const base_sqft = this.house.basement_sqft;
+
+      if ((numFloors == "3+" || numFloors == "2") && base_sqft > 0) {
+        this.house.price = this.quoteService.approxRCTWithBasement(this.house.sqft, this.house.build_quality);
+      }
+      else if ((numFloors == "3+" || numFloors == "2")) {
+        this.house.price = this.quoteService.approxRCTNoBasement(this.house.sqft, this.house.build_quality);
+      }
+      else if (base_sqft > 0) {
+        this.house.price = this.quoteService.approxRCT1StoreyBase(this.house.sqft, this.house.build_quality);
+      }
+      else {
+        this.house.price = this.quoteService.approxRCT1Storey(this.house.sqft, this.house.build_quality);
+      }
+
+      console.log(this.house);
+
       this.validForm = true;
     }
     else {
@@ -129,6 +159,7 @@ interface House {
   num_floors: string;
   updated: boolean;
   alarm_type: string;
+  price: number;
 }
 
 interface Address {
