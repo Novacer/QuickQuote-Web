@@ -1,6 +1,6 @@
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
       <h1 class="display-4">Quote for {{savedQuote.client_name}}</h1>
-      <p class="lead">These are the recommendations for this client's property. Click on "Get Started" to go to the company's portal to get an official quote. Click on "Save" to save this quote to your dashboard.</p>
+      <p class="lead">These are the comparisons for this client's property. Click on "Get Started" to go to the company's portal to get an official quote. Click on "Save Quote" to save this quote to your dashboard.</p>
     </div>
 
 <div class="container-fluid">
@@ -14,8 +14,23 @@
             <ul class="list-unstyled mt-3 mb-4">
               <li *ngFor="let discount of company.discountList">{{discount}}</li>
             </ul>
-            <button type="button" class="btn btn-lg btn-block btn-primary" (click)='onStartClick(company.company_name)'>Get started</button>
+            <button type="button" class="btn btn-lg btn-block btn-spec" (click)='onStartClick(company.company_name)'>Get started</button>
           </div>
         </div>
       </div>
+
+      <hr class="mb-4" />
+    <div class="container ml-auto">
+      <button type="button" class="btn btn-lg btn-spec" (click)='onSaveClick()'>Save Quote</button>
+      <button type="button" class="btn btn-lg btn-spec2" (click)='onAnotherClick()'>Get Another Quote</button>
+    </div>
 </div>
+
+<footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2017-2018 Company Name</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+      </footer>

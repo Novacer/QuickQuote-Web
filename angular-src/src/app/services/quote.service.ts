@@ -282,12 +282,13 @@ export class QuoteService {
   }
 
   // requires that quote exists in localStorage!
-  pushSavedQuote() {
+  pushSavedQuote(next) {
     this.loadQuote();
 
     this.authService.modifyQuotes(this.quote).subscribe(data => {
       if (data.success) {
         this.authService.updateUserData(data.user);
+        next();
       }
 
       else {

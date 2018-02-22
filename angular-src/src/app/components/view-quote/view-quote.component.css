@@ -23,3 +23,16 @@ html {
 .border-bottom { border-bottom: 1px solid #e5e5e5; }
 
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+.btn-spec{
+  background-color: #ffc815;
+  float: right;
+  color: white;
+}
+
+.btn-spec2 {
+  background-color: #585858;
+  float: right;
+  color: white;
+  margin-right: 10px;
+}

@@ -48,4 +48,14 @@ export class ViewQuoteComponent implements OnInit {
     }
   }
 
+  onSaveClick() {
+    this.quoteService.pushSavedQuote(() => {
+      this.router.navigateByUrl('profile');
+    });
+  }
+
+  onAnotherClick() {
+    this.router.navigateByUrl('quote');
+  }
+
 }
