@@ -7,19 +7,19 @@
                       </div>
                       <div class="col-sm-5 pb-3">
                           <label for="exampleFirst">Full Name</label>
-                          <input type="text" class="form-control" id="exampleFirst">
+                          <input type="text" class="form-control" id="exampleFirst" name="client_name" [(ngModel)]="client_name">
                       </div>
                        <div class="col-sm-2 pb-3">
                            <label for="exampleAccount">Account #</label>
-                           <input type="text" class="form-control" id="exampleAccount" placeholder="XXXXXX">
+                           <input type="text" class="form-control" id="exampleAccount" placeholder="XXXXXX" name="client_account_num" [(ngModel)]="client_account_num">
                        </div>
                        <div class="col-sm-3 pb-3">
                            <label for="exampleCtrl">Date of Birth</label>
-                           <input type="text" class="form-control" id="exampleCtrl" placeholder="YYYY/MM/DD">
+                           <input type="text" class="form-control" id="exampleCtrl" placeholder="YYYY/MM/DD" name="client_dob" [(ngModel)]="client_dob">
                        </div>
                        <div class="col-sm-2 pb-3">
                            <label for="exampleCtrl">Years Claims Free</label>
-                           <input type="text" class="form-control" id="exampleCtrl" placeholder="0">
+                           <input type="number" min="0" max="10" class="form-control" id="exampleCtrl" placeholder="0" value="0" name="client_claims_free" [(ngModel)]="client_claims_free">
                        </div>
                        <div class="col-sm-12 pb-3">
                          <h3>Address Information</h3>
@@ -27,35 +27,45 @@
                        </div>
                        <div class="col-sm-6 pb-3">
                            <label for="exampleCity">Insured Property Street Address</label>
-                           <input type="text" class="form-control" id="exampleCity">
+                           <input type="text" class="form-control" id="exampleCity" name="client_street" [(ngModel)]="client_street">
                        </div>
                        <div class="col-sm-3 pb-3">
                            <label for="exampleZip">Insured Property Postal Code</label>
-                           <input type="text" class="form-control" id="exampleZip" placeholder="XXX-XXX">
+                           <input type="text" class="form-control" id="exampleZip" placeholder="XXX-XXX" name="client_postal_code" [(ngModel)]="client_postal_code">
                        </div>
                        <div class="col-md-3 pb-3">
                          <label for="exampleAccount"></label>
                            <div class="form-group large">
                                <div class="form-check form-check-inline top">
                                    <label class="form-check-label">
-                                       <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked> Mail policy to this address
+                                       <input class="form-check-input" type="checkbox" name="inlineRadioOptions" id="inlineRadio1" value="option1" [checked]="same_mailing" (change)="same_mailing = !same_mailing" checked> Mail policy to this address
                                    </label>
                                </div>
                            </div>
                        </div>
-                       <div class="col-sm-6 pb-3">
+                       <div class="col-sm-6 pb-3" *ngIf="!same_mailing">
                            <label for="exampleCity">Mailing Street Address</label>
-                           <input type="text" class="form-control" id="exampleCity">
+                           <input type="text" class="form-control" id="exampleCity" name="house_street" [(ngModel)]="house_street">
                        </div>
-                       <div class="col-sm-3 pb-3">
+                       <div class="col-sm-3 pb-3" *ngIf="!same_mailing">
                            <label for="exampleSt">Mailing Province</label>
-                           <select class="form-control" id="exampleSt">
+                           <select class="form-control" id="exampleSt" #mail_province (change)="house_province = mail_province.value">
                                <option>Pick a province</option>
+                               <option>AB</option>
+                               <option>BC</option>
+                               <option>MB</option>
+                               <option>NB</option>
+                               <option>NL</option>
+                               <option>NS</option>
+                               <option>ON</option>
+                               <option>PE</option>
+                               <option>QC</option>
+                               <option>SK</option>
                            </select>
                        </div>
-                       <div class="col-sm-3 pb-3">
+                       <div class="col-sm-3 pb-3" *ngIf="!same_mailing">
                            <label for="exampleZip">Mailing Postal Code</label>
-                           <input type="text" class="form-control" id="exampleZip" placeholder="XXX-XXX">
+                           <input type="text" class="form-control" id="exampleZip" placeholder="XXX-XXX" name="house_postal_code" [(ngModel)]="house_postal_code">
                        </div>
                        <div class="col-sm-12 pb-3">
                          <h3>Insured Property Information</h3>
@@ -63,45 +73,45 @@
                        </div>
                        <div class="col-md-4 pb-3">
                            <label for="exampleAccount">Build Quality</label>
-                           <div class="form-group small">
+                           <div class="form-group small top">
                                <div class="form-check form-check-inline">
                                    <label class="form-check-label">
-                                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="standard" checked> Standard
+                                       <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio11" (click)="house_build = 'Standard'" checked> Standard
                                    </label>
                                </div>
                                <div class="form-check form-check-inline">
                                    <label class="form-check-label">
-                                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="semi-custom"> Semi-custom
+                                       <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio12" (click)="house_build = 'Semi-custom'"> Semi-custom
                                    </label>
                                </div>
                                <div class="form-check form-check-inline">
                                    <label class="form-check-label">
-                                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="custom"> Custom
+                                       <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio13" (click)="house_build = 'Custom'"> Custom
                                    </label>
                                </div>
                            </div>
                        </div>
                        <div class="col-sm-2 pb-3">
                            <label for="exampleCtrl">Year Built</label>
-                           <input type="text" class="form-control" id="exampleCtrl" placeholder="YYYY">
+                           <input type="number" min="1800" max="2018" class="form-control" id="exampleCtrl" placeholder="YYYY" name="house_year_built" [(ngModel)]="house_year_built">
                        </div>
                        <div class="col-sm-3 pb-3">
                            <label for="exampleAmount">Total Sqft (excluding basement)</label>
                            <div class="input-group">
-                               <input type="text" class="form-control" id="exampleAmount" placeholder="Amount">
+                               <input type="number" min="0" class="form-control" id="exampleAmount" placeholder="Amount" name="house_sqft" [(ngModel)]="house_sqft">
                                <div class="input-group-append"><span class="input-group-text">sqft</span></div>
                            </div>
                        </div>
                        <div class="col-sm-3 pb-3">
                            <label for="exampleAmount">Basement Sqft (zero if none)</label>
                            <div class="input-group">
-                               <input type="text" class="form-control" id="exampleAmount" placeholder="Amount">
+                               <input type="number" min="0" class="form-control" id="exampleAmount" placeholder="Amount" name="house_basement_sqft" [(ngModel)]="house_basement_sqft">
                                <div class="input-group-append"><span class="input-group-text">sqft</span></div>
                            </div>
                        </div>
                        <div class="col-sm-3 pb-3">
                            <label for="floors">Number of Floors (exclude basement)</label>
-                           <select class="form-control" id="floors">
+                           <select class="form-control" id="floors" #select_floors (change)="house_num_floors = select_floors.value">
                                <option>1</option>
                                <option>1.5</option>
                                <option>2</option>
@@ -111,7 +121,7 @@
                        </div>
                        <div class="col-sm-3 pb-3">
                            <label for="roof">The roof of this property is...</label>
-                           <select class="form-control" id="roof">
+                           <select class="form-control" id="roof" #roof_update (change)="changeUpdate(roof_update.value)">
                                <option>Less than 25 years old</option>
                                <option>25+ years old</option>
                            </select>
@@ -121,31 +131,31 @@
                            <div class="form-group small top">
                                <div class="form-check form-check-inline">
                                    <label class="form-check-label">
-                                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="standard" checked> None
+                                       <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio21" (click)="house_alarm_type = 'None'" checked> None
                                    </label>
                                </div>
                                <div class="form-check form-check-inline">
                                    <label class="form-check-label">
-                                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="semi-custom"> Local
+                                       <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio22" (click)="house_alarm_type = 'Local'"> Local
                                    </label>
                                </div>
                                <div class="form-check form-check-inline">
                                    <label class="form-check-label">
-                                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="custom"> Monitored
+                                       <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio23" (click)="house_alarm_type = 'Monitored'"> Monitored
                                    </label>
                                </div>
                            </div>
                        </div>
                        <div class="col-md-6 pb-3">
                            <label for="exampleMessage">Comments</label>
-                           <textarea class="form-control" id="exampleMessage"></textarea>
+                           <textarea class="form-control" id="exampleMessage" name="client_comments" [(ngModel)]="client_comments"></textarea>
                            <small class="text-info">
                              Add any comments or reminders here.
                            </small>
                        </div>
                        <div class="col-md-6 pb-3">
                          <label class="bottom" for="final"></label>
-                         <button class="btn btn-lg my-btn btn-block" type="submit" id="final">Quote it!</button>
+                         <button class="btn btn-lg my-btn btn-block" type="submit" id="final" (click)="onQuoteClick()">Quote it!</button>
                        </div>
 
                        <div class="col-md-12">
