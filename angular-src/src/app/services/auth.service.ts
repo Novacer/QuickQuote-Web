@@ -44,10 +44,20 @@ export class AuthService {
     this.authToken = token;
     this.user = user;
   }
+  
+  updateUserData(user) {
+    localStorage.setItem('user', JSON.stringify(user));
+    this.user = user;
+  }
 
   loadToken() {
     var token = localStorage.getItem('id_token');
     this.authToken = token;
+  }
+
+  loadUser() {
+    var string_user = localStorage.getItem('user');
+    this.user = JSON.parse(string_user);
   }
 
   getProfile() {
@@ -57,6 +67,26 @@ export class AuthService {
     headers.append('Authorization', this.authToken);
 
     return this.http.get('http://localhost:3000/users/profile', {headers: headers})
+      .map(resp => resp.json());
+  }
+
+  modifyQuotes(newQuote) {
+    let headers = new Headers();
+    this.loadToken();
+    this.loadUser();
+
+    var quotes = this.user.quotes;
+    quotes.push(newQuote);
+
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', this.authToken);
+
+    let update = {
+      username: this.user.username,
+      quotes: quotes
+    }
+
+    return this.http.post('http://localhost:3000/users/quote', update, {headers: headers})
       .map(resp => resp.json());
   }
 
