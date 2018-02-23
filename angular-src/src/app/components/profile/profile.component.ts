@@ -68,6 +68,7 @@ export class ProfileComponent implements OnInit {
 
     this.quoteService.removeQuote(this.user.quotes, () => {
       this.user = JSON.parse(localStorage.getItem('user'));
+      this.uniqueClients();
     });
   }
 
@@ -84,6 +85,10 @@ export class ProfileComponent implements OnInit {
       }
     }
     return count;
+  }
+
+  redirQuote() {
+    this.router.navigateByUrl('quote');
   }
 }
 

@@ -37,6 +37,13 @@
     .sidenav a {font-size: 18px;}
 }
 
+.jumbotron {
+  background-color: white;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 html {
   font-size: 14px;
 }
@@ -72,6 +79,16 @@ html {
   float: left;
   color: white;
   margin-left: 10px;
+}
+
+.btn-zero{
+  background-color: #ffc815;
+  margin-left: 20px;
+  color: white;
+}
+
+.color-gray{
+  color: #585858;
 }
 
 .padding-top{
