@@ -20,6 +20,8 @@ export class ViewQuoteComponent implements OnInit {
     if (!quote) {
       this.savedQuote = null;
       this.existsSavedQuote = false;
+
+      this.router.navigateByUrl('quote');
     }
     else {
       this.savedQuote = quote;

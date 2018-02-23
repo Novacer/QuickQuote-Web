@@ -1,9 +1,9 @@
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center" *ngIf="existsSavedQuote">
       <h1 class="display-4">Quote for {{savedQuote.client_name}}</h1>
       <p class="lead">These are the comparisons for this client's property. Click on "Get Started" to go to the company's portal to get an official quote. Click on "Save Quote" to save this quote to your dashboard.</p>
     </div>
 
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="existsSavedQuote">
       <div class="card-deck mb-4 text-center">
         <div class="card mb-2 box-shadow" *ngFor="let company of companies; let i = index">
           <div class="card-header">
