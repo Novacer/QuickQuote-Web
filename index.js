@@ -50,6 +50,10 @@ app.get('/', function(request, response) {
   response.send("Hello World");
 });
 
+app.get('/*', function(req, res) {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
 // check server start
 app.listen(port, function() {
   console.log("server started on port " + port);
