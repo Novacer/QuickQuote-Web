@@ -8,7 +8,7 @@
   <hr />
   <a (click)='onClientsView()'>Clients</a>
   <hr />
-  <a (click)='onContactView()'>Contact</a>
+  <a (click)='onContactView()'>Get Help!</a>
 </div>
 
 <div class="main" *ngIf="user && view_profile">
@@ -110,7 +110,7 @@
               <ul class="list-unstyled mt-3 mb-4">
                 <li *ngFor="let discount of company.discountList">{{discount}}</li>
               </ul>
-              <button type="button" class="btn btn-lg btn-block btn-spec">Get started</button>
+              <button type="button" class="btn btn-lg btn-block btn-spec" (click)='onStartClick(company.company_name)'>Get started</button>
             </div>
           </div>
         </div>
