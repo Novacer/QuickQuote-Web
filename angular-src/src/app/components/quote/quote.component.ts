@@ -53,6 +53,7 @@ export class QuoteComponent implements OnInit {
     this.house_updated = true;
     this.house_alarm_type = "None";
     this.client_comments = "";
+    this.client_claims_free = 0;
 
   }
 

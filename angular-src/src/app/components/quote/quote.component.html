@@ -1,7 +1,7 @@
 
 <div class="container">
-  <div class="alert alert-danger" *ngIf="!validForm">
-    <strong>Registration Failed!</strong>
+  <div class="alert alert-danger mgn-top" *ngIf="!validForm">
+    <strong>Invalid Form! Please make sure you fill everything out properly.</strong>
   </div>
 <div class="child form-row mt-4">
                       <div class="col-sm-12 pb-3">
@@ -22,7 +22,7 @@
                        </div>
                        <div class="col-sm-2 pb-3">
                            <label for="exampleCtrl">Years Claims Free</label>
-                           <input type="number" min="0" max="10" class="form-control" id="exampleCtrl" placeholder="0" value="0" name="client_claims_free" [(ngModel)]="client_claims_free">
+                           <input type="number" min="0" max="10" class="form-control" id="exampleCtrl" value="0" name="client_claims_free" [(ngModel)]="client_claims_free">
                        </div>
                        <div class="col-sm-12 pb-3">
                          <h3>Address Information</h3>
@@ -34,7 +34,7 @@
                        </div>
                        <div class="col-sm-3 pb-3">
                            <label for="exampleZip">Insured Property Postal Code</label>
-                           <input type="text" class="form-control" id="exampleZip" placeholder="XXX-XXX" name="client_postal_code" [(ngModel)]="client_postal_code">
+                           <input type="text" class="form-control" id="exampleZip" placeholder="XXX XXX" name="client_postal_code" [(ngModel)]="client_postal_code">
                        </div>
                        <div class="col-md-3 pb-3">
                          <label for="exampleAccount"></label>
