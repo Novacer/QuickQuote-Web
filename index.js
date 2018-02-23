@@ -24,7 +24,7 @@ var app = express();
 // API route
 var users = require('./routes/users');
 
-var port = process.env.port || 8080;
+var port = process.env.PORT || 8080;
 
 // using CORS middleware to protect api url
 app.use(cors());
