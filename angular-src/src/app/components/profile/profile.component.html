@@ -1,14 +1,109 @@
 <!-- Side navigation -->
 <div class="sidenav">
   <a href="#"></a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
+  <br />
+  <a (click)='onProfileView()'>Profile</a>
+  <hr />
+  <a (click)="onQuoteView()">My Quotes</a>
+  <hr />
+  <a (click)='onClientsView()'>Clients</a>
+  <hr />
+  <a (click)='onContactView()'>Contact</a>
 </div>
 
-<!-- Page content -->
-<div class="main container-fluid" *ngIf="user">
-  <p>{{user.name}}</p>
-  <p>{{user.email}}</p>
+<div class="main" *ngIf="user && view_profile">
+  <div class="container padding-top">
+    <div class="row">
+      <div class="col-md-8">
+        <h2>Welcome back!</h2>
+      </div>
+    </div>
+  <div class="row">
+      <div class="card">
+			<div class="card-body">
+              		<div class="row">
+                        <div class="col-xs-12 col-sm-8">
+                            <h2>{{user.name}}</h2>
+                            <p><strong>Username: </strong> {{user.username}} </p>
+                            <p><strong>Email: </strong> {{user.email}} </p>
+                        </div><!--/col-->
+                        <div class="col-xs-12 col-sm-4 text-center">
+                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzW9XVx-J_KB5_uQjPwMZxnzxdJNrmDve_U6iuojoW5HX7Pknq" alt="" class="center-block img-circle img-responsive" height="120">
+                        </div><!--/col-->
+
+                        <div class="col-xs-12 col-sm-4">
+                            <h2> You have: </h2>
+                        </div><!--/col-->
+                        <div class="col-xs-12 col-sm-4">
+                            <h2><strong>{{user.quotes.length}}</strong></h2>
+                            <p><small>Quotes</small></p>
+                        </div><!--/col-->
+                        <div class="col-xs-12 col-sm-4">
+                            <h2><strong>{{uniqueClients()}}</strong></h2>
+                            <p><small>Clients</small></p>
+                        </div><!--/col-->
+              		</div><!--/row-->
+              </div><!--/panel-body-->
+          </div><!--/panel-->
+  </div>
+</div>
+</div>
+
+<div class="main container" *ngIf="user && view_clients">
+  <div class="row">
+        <div class="col-xs-12 col-sm-offset-3 col-sm-9">
+            <div class="panel panel-default">
+                <div class="panel-heading c-list">
+                    <span class="title">My Clients</span>
+                </div>
+                <hr />
+                <br/> <br/>
+                <ul class="list-group" id="contact-list">
+                    <li class="list-group-item" *ngFor="let name of uniqueNames; let i = index">
+                        <div class="col-xs-12 col-sm-3">
+                            <img src="{{randomPortraits[i % 5]}}" alt="" class="img-responsive img-circle" height="50" width="50"/>
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+                            <span class="name">{{name}}</span><br/>
+                        </div>
+                        <div class="clearfix"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+	</div>
+</div>
+
+<!-- Quote content -->
+<div class="main container" *ngIf="user && view_quotes">
+  <div class="container card box-shadow mb-2" *ngFor="let quote of user.quotes; let r = index">
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">Quote for {{quote.client_name}}</h1>
+        <p class="lead">These are the comparisons for this client's property. Click on "Get Started" to go to the company's portal to get an official quote. Click on "Save Quote" to save this quote to your dashboard.</p>
+      </div>
+
+  <div class="container">
+        <div class="card-group mb-4 text-center">
+          <div class="card mb-2 box-shadow" *ngFor="let company of quote.companies; let c = index">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">{{reccomendations[c]}}</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">{{company.company_name}}</h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li *ngFor="let discount of company.discountList">{{discount}}</li>
+              </ul>
+              <button type="button" class="btn btn-lg btn-block btn-spec">Get started</button>
+            </div>
+          </div>
+        </div>
+
+        <hr class="mb-4" />
+      <div class="container ml-auto">
+        <button type="button" class="btn btn-lg btn-spec" [routerLink]="['/quote']">Get Another Quote</button>
+        <button type="button" class="btn btn-lg btn-spec2" (click)="deleteQuote(r)">Delete This Quote</button>
+        <br/> <br/> <br/>
+      </div>
+  </div>
+</div>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { QuoteService } from '../../services/quote.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,9 +10,26 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
-  user: Object;
+  user: User;
+  uniqueNames: string[];
+  reccomendations: string[];
+  view_profile: boolean;
+  view_quotes: boolean;
+  view_clients: boolean;
+  randomPortraits: string[];
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private quoteService: QuoteService) {
+    this.reccomendations = ['Most Suitable', 'Suitable', 'Less Suitable', 'Not Suitable'];
+    this.randomPortraits = ['http://sites.ieee.org/ias-icps/files/2016/05/male-generic-profile.jpg',
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3-354gNrs5QoI2JUuykVpPHiKCtYgcsdtbulzOErWOFf_5fk03g',
+                            'https://www.cambrex.com/wp-content/themes/cambrex/images/placeholder-profile.jpg',
+                            'http://www.newdesignfile.com/postpic/2014/07/generic-profile_352873.png',
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5gwCOEfnHbmKstVrm5bkO9tTszTI4BI1boJOVROmIB94CuJEY'];
+    this.view_profile = true;
+    this.view_clients = false;
+    this.view_quotes = false;
+    this.uniqueNames = [];
+  }
 
   ngOnInit() {
     this.authService.getProfile().subscribe(data => {
@@ -23,4 +41,55 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  onQuoteView() {
+    this.view_profile = false;
+    this.view_clients = false;
+    this.view_quotes = true;
+  }
+
+  onProfileView() {
+    this.view_profile = true;
+    this.view_clients = false;
+    this.view_quotes = false;
+  }
+
+  onClientsView() {
+    this.view_profile = false;
+    this.view_clients = true;
+    this.view_quotes = false;
+  }
+
+  onContactView() {
+    console.log("contact works!");
+  }
+
+  deleteQuote(index: number) {
+    this.user.quotes.splice(index, 1);
+
+    this.quoteService.removeQuote(this.user.quotes, () => {
+      this.user = JSON.parse(localStorage.getItem('user'));
+    });
+  }
+
+  uniqueClients() {
+    var count = 0;
+    const quotesList = this.user.quotes;
+    // reset the unique names
+    this.uniqueNames = [];
+
+    for (var i = 0; i < quotesList.length; i++) {
+      if (this.uniqueNames.indexOf(quotesList[i].client_name) == -1) {
+        this.uniqueNames.push(quotesList[i].client_name);
+        count++;
+      }
+    }
+    return count;
+  }
+}
+
+interface User {
+  name: string;
+  email: string;
+  quotes: any[];
+  username: string;
 }
