@@ -13,7 +13,7 @@ export class QuoteService {
   wawanesa: Company;
   family: Company;
 
-  constructor(private authService: AuthService, private http: Http) { }
+  constructor(private authService: AuthService) { }
 
   approxRCTWithBasement(sqft: number, custom: string) {
     if (custom == "Standard") {
