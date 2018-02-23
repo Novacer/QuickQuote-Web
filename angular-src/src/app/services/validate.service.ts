@@ -45,9 +45,18 @@ export class ValidateService {
     }
 
     //misc checks
+    if (client.claims_free < 0 || house.sqft < 0 || house.basement_sqft < 0) {
+      return false;
+    }
+
     if (client.dob > 2018 || house.year_built > 2018) {
-    return false;
-  }
+      return false;
+    }
+
+    else if (client.dob < 1800 || house.year_built < 1800) {
+      return false;
+    }
+
     else {
       return true;
     }
