@@ -44,7 +44,7 @@ export class AuthService {
     this.authToken = token;
     this.user = user;
   }
-  
+
   updateUserData(user) {
     localStorage.setItem('user', JSON.stringify(user));
     this.user = user;
@@ -70,7 +70,7 @@ export class AuthService {
       .map(resp => resp.json());
   }
 
-  modifyQuotes(newQuote) {
+  addQuotes(newQuote) {
     let headers = new Headers();
     this.loadToken();
     this.loadUser();
@@ -84,6 +84,23 @@ export class AuthService {
     let update = {
       username: this.user.username,
       quotes: quotes
+    }
+
+    return this.http.post('http://localhost:3000/users/quote', update, {headers: headers})
+      .map(resp => resp.json());
+  }
+
+  removeQuotes(newQuotes: any[]) {
+    let headers = new Headers();
+    this.loadToken();
+    this.loadUser();
+
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', this.authToken);
+
+    let update = {
+      username: this.user.username,
+      quotes: newQuotes
     }
 
     return this.http.post('http://localhost:3000/users/quote', update, {headers: headers})
