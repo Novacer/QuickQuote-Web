@@ -285,7 +285,7 @@ export class QuoteService {
   pushSavedQuote(next) {
     this.loadQuote();
 
-    this.authService.modifyQuotes(this.quote).subscribe(data => {
+    this.authService.addQuotes(this.quote).subscribe(data => {
       if (data.success) {
         this.authService.updateUserData(data.user);
         next();
@@ -299,6 +299,20 @@ export class QuoteService {
 
   loadQuote() {
     this.quote = JSON.parse(localStorage.getItem('quote'));
+  }
+
+  removeQuote(newQuotes, next) {
+
+    this.authService.removeQuotes(newQuotes).subscribe(data => {
+      if (data.success) {
+        this.authService.updateUserData(data.user);
+        next();
+      }
+
+      else {
+        return false;
+      }
+    });
   }
 }
 
