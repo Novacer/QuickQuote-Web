@@ -91,7 +91,7 @@ router.post('/quote', passport.authenticate('jwt', {session: false}), function(r
       return res.json({success: false, msg: "Failed to edit quotes!"});
     }
     else {
-      console.log(doc);
+      //console.log(doc);
       res.json({success: true, user: doc});
     }
   });

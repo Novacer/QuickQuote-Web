@@ -100,7 +100,7 @@ export class QuoteComponent implements OnInit {
     }
 
     if (this.validateService.validateQuote(this.client, this.house)) {
-      console.log('success!');
+      //console.log('success!');
 
       if (2018 - this.house.year_built <= 25) {
         this.house.updated = true;
