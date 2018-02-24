@@ -2,9 +2,9 @@
 
 QuickQuote but now as a MEAN web app! Website Link: https://qquote.herokuapp.com/
 
-* Basic Overview
-* Technical Overview
-* REST API Documentation
+* [Basic Overview](https://github.com/Novacer/QuickQuote-Web/blob/master/README.md#basic-overview)
+* [Technical Overview](https://github.com/Novacer/QuickQuote-Web/blob/master/README.md#technical-overview)
+* [REST API Documentation](https://github.com/Novacer/QuickQuote-Web/blob/master/README.md#rest_api)
 
 ## Technologies used in this project:
 * NodeJS
@@ -128,7 +128,7 @@ response: {
 ```
 
 ### POST - "/authenticate"
-
+Checks to see if user credentials exists in the database. Return the user and a token if true, else a message if false.
 
 --------
 ```JSON
