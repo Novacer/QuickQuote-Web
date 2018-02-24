@@ -4,7 +4,7 @@ QuickQuote but now as a MEAN web app! Website Link: https://qquote.herokuapp.com
 
 * [Basic Overview](https://github.com/Novacer/QuickQuote-Web/blob/master/README.md#basic-overview)
 * [Technical Overview](https://github.com/Novacer/QuickQuote-Web/blob/master/README.md#technical-overview)
-* [REST API Documentation](https://github.com/Novacer/QuickQuote-Web/blob/master/README.md#rest_api)
+* [REST API Documentation](https://github.com/Novacer/QuickQuote-Web/blob/master/README.md#rest-api)
 
 ## Technologies used in this project:
 * NodeJS
