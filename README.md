@@ -92,7 +92,7 @@ response: {
 ```
 
 ### GET - "/profile"
-Returns the user profile after validating that the user is logged in
+Returns the user profile after validating that the user is logged in.
 (Requires "Authorization", "Bearer *token*" pair in header)
 
 --------
@@ -111,7 +111,7 @@ response: {
 ```
 
 ### POST - "/quote"
-Changes the user with username's list of quotes by overwriting it with the list of quotes provided in the header.
+Changes the user with username's list of quotes by overwriting it with the list of quotes provided in the body.
 (Requires "Authorization", "Bearer *token*" pair in header)
 
 --------
