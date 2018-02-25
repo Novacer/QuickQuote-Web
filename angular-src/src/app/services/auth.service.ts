@@ -11,6 +11,8 @@ export class AuthService {
 
   constructor(private http: Http) { }
 
+
+  // checkUserAvail(string) checks if the username is not taken in the database
   checkUserAvail(username) {
     const body = {
       username: username
@@ -23,6 +25,8 @@ export class AuthService {
       .map(resp => resp.json());
   }
 
+
+  // registerUser(Object) registers user in the database
   registerUser(user) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -31,6 +35,8 @@ export class AuthService {
       .map(resp => resp.json());
   }
 
+
+  // authenticateUser(Object) checks if the user has the valid credentials
   authenticateUser(user) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -38,6 +44,8 @@ export class AuthService {
       .map(resp => resp.json());
   }
 
+
+  // storeUserData(string, Object) saves the token and user in the localStorage
   storeUserData(token, user) {
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));
@@ -45,21 +53,30 @@ export class AuthService {
     this.user = user;
   }
 
+
+  // updateUserData(Object) saves the user to localStorage
   updateUserData(user) {
     localStorage.setItem('user', JSON.stringify(user));
     this.user = user;
   }
 
+
+  // loadToken() reads the current token from localStorage
   loadToken() {
     var token = localStorage.getItem('id_token');
     this.authToken = token;
   }
 
+
+  // loadUser() reads the current token from localStorage
   loadUser() {
     var string_user = localStorage.getItem('user');
     this.user = JSON.parse(string_user);
   }
 
+
+  // getProfile() returns the user's profile by making a HTTP GET request with
+  //   the token in the header
   getProfile() {
     let headers = new Headers();
     this.loadToken();
@@ -70,6 +87,8 @@ export class AuthService {
       .map(resp => resp.json());
   }
 
+
+  // addQuotes(Object) adds the newQuote to the user's quotes in MongoDB
   addQuotes(newQuote) {
     let headers = new Headers();
     this.loadToken();
@@ -90,6 +109,8 @@ export class AuthService {
       .map(resp => resp.json());
   }
 
+
+  // removeQuotes(Array) overwrites the user's quotes in MongoDB with the newQuotes
   removeQuotes(newQuotes: any[]) {
     let headers = new Headers();
     this.loadToken();
@@ -107,12 +128,16 @@ export class AuthService {
       .map(resp => resp.json());
   }
 
+
+  // logout() clears the localStorage
   logout() {
     this.authToken = null;
     this.user = null;
     localStorage.clear();
   }
 
+
+  // loggedIn() returns true if the token is valid, false otherwise
   loggedIn() {
     return tokenNotExpired('id_token');
   }

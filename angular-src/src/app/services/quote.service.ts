@@ -15,6 +15,9 @@ export class QuoteService {
 
   constructor(private authService: AuthService) { }
 
+
+  // approxRCTWithBasement(number, string) returns the approximate building limit
+  //   for a two storey house with sqft size, build quality specified by custom, and a basement
   approxRCTWithBasement(sqft: number, custom: string) {
     if (custom == "Standard") {
       return sqft*200;
@@ -30,6 +33,9 @@ export class QuoteService {
     }
   }
 
+
+  // approxRCTNoBasement(number, string) returns an approximate building limit
+  //   for a two storey house with sqft size, build quality specified by custom, and no basement
   approxRCTNoBasement(sqft: number, custom: string) {
     if (custom == "Standard") {
       return sqft*200;
@@ -45,6 +51,9 @@ export class QuoteService {
     }
   }
 
+
+  // approxRCT1StoreyBase(number, string) returns an approximate building limit
+  //   for a one storey house with sqft size, build quality specified by custom, and basement
   approxRCT1StoreyBase(sqft: number, custom: string) {
     if (custom == "Standard") {
       return sqft*200;
@@ -60,6 +69,9 @@ export class QuoteService {
     }
   }
 
+
+  // approxRCT1Storey(number, string) returns an approximate building limit
+  //   for a one storey house with sqft size, build quality specified by custom, and no basement
   approxRCT1Storey(sqft: number, custom: string) {
     if (custom == "Standard") {
       return sqft*180;
@@ -75,6 +87,9 @@ export class QuoteService {
     }
   }
 
+
+  // createAndSaveQuote(Object, Object, func) creates a quote using client and house,
+  //   and saves it to the localStorage, calling next upon finishing
   createAndSaveQuote(client, house, next) {
     this.m_client = client;
     this.m_house = house;
@@ -268,6 +283,8 @@ export class QuoteService {
     next();
   }
 
+
+  // getSaveQuote() reads and returns the saved quote in localStorage
   getSavedQuote() {
     const savedString = localStorage.getItem('quote');
 
@@ -280,7 +297,9 @@ export class QuoteService {
     }
   }
 
-  // requires that quote exists in localStorage!
+  // pushSavedQuote(func) pushes the quote that is saved in localStorage into the
+  //   users list of quotes saved in MongoDB, calling next upon finishing
+  // requires: 'quote' exists in localStorage
   pushSavedQuote(next) {
     this.loadQuote();
 
@@ -296,10 +315,15 @@ export class QuoteService {
     });
   }
 
+
+  // loadQuote() reads the quote from localStorage
   loadQuote() {
     this.quote = JSON.parse(localStorage.getItem('quote'));
   }
 
+
+  // removeQuote(array, func) overwrites the user's list of quotes saved in
+  //   MongoDB with newQuotes, calling next upon finishing
   removeQuote(newQuotes, next) {
 
     this.authService.removeQuotes(newQuotes).subscribe(data => {
