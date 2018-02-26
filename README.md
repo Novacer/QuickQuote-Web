@@ -98,7 +98,7 @@ Returns the user profile after validating that the user is logged in.
 --------
 ```JSON
 response: {
-  "user": Object
+  "user": "Object"
 }
 ```
 
