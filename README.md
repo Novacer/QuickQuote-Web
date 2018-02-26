@@ -97,16 +97,8 @@ Returns the user profile after validating that the user is logged in.
 
 --------
 ```JSON
-parameters: {
-  "email": "string",
-  "name": "string",
-  "username": "string",
-  "password": "string"
-}
-
 response: {
-  "success": "boolean",
-  "msg": "string"
+  "user": Object
 }
 ```
 
